@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 18 18 18;
+    --foreground: 248 250 252;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: theme('colors.slate.50');
+  background: theme('colors.background');
+}
