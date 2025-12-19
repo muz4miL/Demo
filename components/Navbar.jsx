@@ -46,12 +46,29 @@ export default function Navbar() {
 
                 {/* CTA */}
                 <div className="hidden md:block">
-                    <Link
-                        href="#contact"
-                        className="px-6 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-full hover:bg-primary/90 transition-all shadow-[0_0_15px_rgba(212,175,55,0.3)]"
+                    <motion.div
+                        animate={{
+                            boxShadow: [
+                                "0 0 15px rgba(247,231,206,0.3)",
+                                "0 0 25px rgba(247,231,206,0.5)",
+                                "0 0 15px rgba(247,231,206,0.3)",
+                            ],
+                        }}
+                        transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                        whileHover={{ scale: 1.05 }}
+                        className="rounded-full"
                     >
-                        Connect
-                    </Link>
+                        <Link
+                            href="#contact"
+                            className="block px-4 md:px-6 py-2 md:py-2.5 bg-primary text-primary-foreground text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em] rounded-full hover:bg-primary/90 transition-all"
+                        >
+                            Connect
+                        </Link>
+                    </motion.div>
                 </div>
 
                 {/* Mobile Toggle */}
@@ -79,7 +96,7 @@ export default function Navbar() {
                     <Link
                         href="#contact"
                         onClick={() => setIsOpen(false)}
-                        className="block text-center px-6 py-3 bg-primary text-primary-foreground font-medium rounded-full"
+                        className="block text-center px-6 py-3 bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-[0.25em] rounded-full"
                     >
                         Connect
                     </Link>

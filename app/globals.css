@@ -16,4 +16,39 @@ html {
 body {
   color: theme('colors.slate.50');
   background: theme('colors.background');
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* Texture Layer */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+  z-index: 50;
+}
+
+/* Bottom-Right Spotlight Glow */
+body::before {
+  content: "";
+  position: fixed;
+  bottom: -10%;
+  right: -10%;
+  width: 800px;
+  height: 800px;
+  background: rgba(30, 41, 59, 0.2);
+  filter: blur(160px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+::selection {
+  background-color: #F7E7CE;
+  color: #121212;
 }
