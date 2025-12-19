@@ -34,26 +34,14 @@ export default function Navbar() {
                         </Link>
                     ))}
 
-                    {/* CTA Button with Glow */}
+                    {/* CTA Button with Glass-Gold Finish */}
                     <motion.div
-                        animate={{
-                            boxShadow: [
-                                "0 0 15px rgba(247,231,206,0.3)",
-                                "0 0 25px rgba(247,231,206,0.5)",
-                                "0 0 15px rgba(247,231,206,0.3)",
-                            ],
-                        }}
-                        transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                        }}
                         whileHover={{ scale: 1.05 }}
                         className="rounded-full"
                     >
                         <Link
                             href="#contact"
-                            className="block px-6 py-2.5 bg-[#F7E7CE] text-[#121212] text-xs font-semibold uppercase tracking-[0.25em] rounded-full hover:bg-[#F7E7CE]/90 transition-all"
+                            className="block px-6 py-2.5 bg-[#F7E7CE] text-black text-xs font-semibold uppercase tracking-[0.25em] rounded-full transition-all backdrop-blur-md shadow-[0_0_20px_rgba(247,231,206,0.2)] hover:shadow-[0_0_30px_rgba(247,231,206,0.5)]"
                         >
                             Connect
                         </Link>

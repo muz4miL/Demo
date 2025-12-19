@@ -9,8 +9,13 @@ export default function Home() {
   return (
     <main className="bg-background min-h-screen">
       <Navbar />
-      <Hero />
-      <Logos />
+
+      {/* Unified Deep Night Atmosphere */}
+      <div className="bg-[#0A0A0B]">
+        <Hero />
+        <Logos />
+      </div>
+
       <Experience />
       <Services />
       <Footer />

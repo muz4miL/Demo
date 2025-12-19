@@ -4,7 +4,8 @@
 
 @layer base {
   :root {
-    --background: 18 18 18;
+    --background: 10 10 11;
+    /* #0A0A0B - Deep Night Charcoal */
     --foreground: 248 250 252;
   }
 }

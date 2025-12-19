@@ -30,7 +30,7 @@ export default function Hero() {
     const line2Words = ["Transforming", "Leadership."];
 
     return (
-        <section className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-slate-900 via-black to-black border-b border-white/5">
+        <section className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_20%_20%,_rgba(247,231,206,0.08)_0%,_transparent_50%)] border-b border-white/[0.03]">
             {/* Animated Glow Orbs - Champagne Gold Aura */}
             <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#F7E7CE]/20 rounded-full blur-[100px] animate-pulse"></div>
