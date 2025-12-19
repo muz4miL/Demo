@@ -11,7 +11,7 @@ module.exports = {
         background: "#121212", // Deep Charcoal
         foreground: "#f8fafc", // Slate-50
         primary: {
-          DEFAULT: "#FFD700", // Bright Vibrant Gold
+          DEFAULT: "#F7E7CE", // Champagne Gold
           foreground: "#121212",
         },
         secondary: {
@@ -23,7 +23,7 @@ module.exports = {
           foreground: "#94a3b8", // Slate-400
         },
         accent: {
-          DEFAULT: "#FFD700", // Bright Vibrant Gold
+          DEFAULT: "#F7E7CE", // Champagne Gold
           foreground: "#121212",
         },
       },

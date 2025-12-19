@@ -1,51 +1,40 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
 
 export default function Navbar() {
-    const [scrolled, setScrolled] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    const navLinks = [
+        { href: "#about", label: "About" },
+        { href: "#experience", label: "Experience" },
+        { href: "#services", label: "Services" },
+    ];
 
     return (
-        <nav
-            className={cn(
-                "fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b border-transparent",
-                scrolled ? "bg-[#121212]/30 backdrop-blur-md border-white/10" : "bg-transparent"
-            )}
-        >
-            <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/40 border-b border-white/5">
+            <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
                 {/* Logo */}
-                <Link href="/" className="font-serif text-2xl font-bold tracking-tight text-white">
-                    <span className="text-primary">S</span>hakeel <span className="text-primary">B</span>ukhari
+                <Link href="/" className="font-serif text-xl md:text-2xl text-white tracking-tight">
+                    <span style={{ color: '#F7E7CE' }}>S</span>hakeel <span style={{ color: '#F7E7CE' }}>B</span>ukhari
                 </Link>
 
-                {/* Desktop Links */}
-                <div className="hidden md:flex items-center space-x-8">
-                    <Link href="#about" className="text-sm font-medium text-slate-300 hover:text-primary transition-colors">
-                        About
-                    </Link>
-                    <Link href="#experience" className="text-sm font-medium text-slate-300 hover:text-primary transition-colors">
-                        Experience
-                    </Link>
-                    <Link href="#services" className="text-sm font-medium text-slate-300 hover:text-primary transition-colors">
-                        Services
-                    </Link>
-                </div>
+                {/* Desktop Navigation */}
+                <div className="hidden md:flex items-center gap-8">
+                    {navLinks.map((link) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className="text-sm text-slate-300 hover:text-white transition-colors duration-300"
+                        >
+                            {link.label}
+                        </Link>
+                    ))}
 
-                {/* CTA */}
-                <div className="hidden md:block">
+                    {/* CTA Button with Glow */}
                     <motion.div
                         animate={{
                             boxShadow: [
@@ -64,44 +53,54 @@ export default function Navbar() {
                     >
                         <Link
                             href="#contact"
-                            className="block px-4 md:px-6 py-2 md:py-2.5 bg-primary text-primary-foreground text-[10px] md:text-xs font-semibold uppercase tracking-[0.25em] rounded-full hover:bg-primary/90 transition-all"
+                            className="block px-6 py-2.5 bg-[#F7E7CE] text-[#121212] text-xs font-semibold uppercase tracking-[0.25em] rounded-full hover:bg-[#F7E7CE]/90 transition-all"
                         >
                             Connect
                         </Link>
                     </motion.div>
                 </div>
 
-                {/* Mobile Toggle */}
-                <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white">
+                {/* Mobile Menu Button */}
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="md:hidden text-white p-2"
+                    aria-label="Toggle menu"
+                >
                     {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
-            </div>
+            </nav>
 
             {/* Mobile Menu */}
-            {isOpen && (
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="md:hidden bg-[#121212] border-b border-white/10 px-6 py-4 space-y-4"
-                >
-                    <Link href="#about" onClick={() => setIsOpen(false)} className="block text-slate-300 hover:text-primary">
-                        About
-                    </Link>
-                    <Link href="#experience" onClick={() => setIsOpen(false)} className="block text-slate-300 hover:text-primary">
-                        Experience
-                    </Link>
-                    <Link href="#services" onClick={() => setIsOpen(false)} className="block text-slate-300 hover:text-primary">
-                        Services
-                    </Link>
-                    <Link
-                        href="#contact"
-                        onClick={() => setIsOpen(false)}
-                        className="block text-center px-6 py-3 bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-[0.25em] rounded-full"
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/5"
                     >
-                        Connect
-                    </Link>
-                </motion.div>
-            )}
-        </nav>
+                        <div className="px-6 py-8 space-y-6">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    onClick={() => setIsOpen(false)}
+                                    className="block text-lg text-slate-300 hover:text-white transition-colors"
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                            <Link
+                                href="#contact"
+                                onClick={() => setIsOpen(false)}
+                                className="block text-center px-6 py-3 bg-[#F7E7CE] text-[#121212] text-xs font-semibold uppercase tracking-[0.25em] rounded-full"
+                            >
+                                Connect
+                            </Link>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </header>
     );
 }

@@ -10,11 +10,15 @@ export const metadata = {
   description: "Shakeel Bukhari - 16 Years of Excellence in Life Coaching, Business Coaching, and Real Estate.",
 };
 
+import SmoothScroll from "@/components/SmoothScroll";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <body className={cn(inter.variable, playfair.variable, "bg-background text-foreground font-sans antialiased")}>
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

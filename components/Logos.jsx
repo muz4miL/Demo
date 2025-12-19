@@ -53,7 +53,7 @@ export default function Logos() {
                             top: mousePosition.y - 100,
                             width: '200px',
                             height: '200px',
-                            background: 'radial-gradient(circle, rgba(255,215,0,0.15) 0%, transparent 70%)',
+                            background: 'radial-gradient(circle, rgba(247,231,206,0.15) 0%, transparent 70%)',
                             filter: 'blur(20px)',
                         }}
                     ></div>
@@ -82,7 +82,7 @@ export default function Logos() {
                                 </div>
                                 {/* Gold glow on hover */}
                                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#FFD700]/20 to-transparent blur-xl"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#F7E7CE]/20 to-transparent blur-xl"></div>
                                 </div>
                             </motion.div>
                         ))}
