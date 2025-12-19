@@ -1,9 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Sparkles, Building } from "lucide-react";
+import React, { useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { Building2, Sparkles, Check } from "lucide-react";
 
 export default function Services() {
     const ref = useRef(null);
@@ -11,95 +10,181 @@ export default function Services() {
 
     const services = [
         {
-            id: 1,
             title: "Elite Life Coaching",
-            description: "Transforming leadership through strategic mindset development and visionary guidance.",
-            features: ["Executive Leadership", "Mindset Mastery", "Vision Development", "High Performance"],
+            description: "Unlocking peak performance and profound personal transformation for high-net-worth individuals and executives.",
+            features: ["Mindset Architecture", "Legacy Planning", "Executive Presence", "Holistic Wellness"],
             icon: Sparkles,
-            gradient: "from-amber-900/40 via-neutral-900/80 to-neutral-900",
+            // Deep gold/soft gradient for coaching
+            gradient: "from-executive-gold/20 to-transparent",
         },
         {
-            id: 2,
             title: "Luxury Real Estate",
-            description: "Strategic investment consulting and high-end property development expertise.",
-            features: ["Investment Strategy", "Premium Development", "Market Analysis", "Portfolio Growth"],
-            icon: Building,
-            gradient: "from-slate-900/40 via-neutral-900/80 to-neutral-900",
+            description: "Curating exclusive investment opportunities and developing high-end properties that define skylines.",
+            features: ["Portfolio Management", "Prime Development", "Market Analytics", "Asset Acquisition"],
+            icon: Building2,
+            // Slightly stronger structure for Real Estate
+            gradient: "from-executive-gold/20 to-transparent",
         },
     ];
 
+    // Stagger animation for container
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2,
+            },
+        },
+    };
+
+    const cardVariants = {
+        hidden: { opacity: 0, y: 50 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.8,
+                ease: [0.25, 0.4, 0.25, 1],
+            },
+        },
+    };
+
     return (
-        <section ref={ref} className="py-24 md:py-32 px-6 relative overflow-hidden">
-            {/* Section Header */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-7xl mx-auto mb-16"
-            >
-                <h2 className="text-[#F7E7CE] tracking-[0.2em] uppercase text-xs font-semibold mb-4">
-                    Specialized Services
-                </h2>
-                <h3 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-slate-100">
-                    Dual Mastery
-                </h3>
-            </motion.div>
+        <section ref={ref} className="py-24 md:py-32 px-6 bg-background relative overflow-hidden" id="services">
+            {/* Ambient Background Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-executive-muted/30 rounded-full blur-[120px] pointer-events-none"></div>
 
-            {/* Services Grid */}
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {services.map((service, index) => (
-                    <motion.div
-                        key={service.id}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                        transition={{ duration: 0.6, delay: index * 0.2 }}
-                        className="group relative h-[600px] rounded-2xl overflow-hidden border border-white/10 hover:border-[#F7E7CE] hover:shadow-[0_0_50px_-12px_rgba(247,231,206,0.3)] transition-all duration-500"
-                    >
-                        {/* Background with gradient overlay */}
-                        <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} transition-transform duration-700 group-hover:scale-105`}>
-                            {/* Subtle pattern overlay */}
-                            <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')]"></div>
-                        </div>
+            <div className="max-w-7xl mx-auto relative z-10">
+                {/* Section Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.6 }}
+                    className="mb-16 md:mb-24 text-center md:text-left"
+                >
+                    <h2 className="text-executive-gold tracking-[0.2em] uppercase text-xs font-semibold mb-4">
+                        Specialized Services
+                    </h2>
+                    <h3 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+                        Dual Mastery
+                    </h3>
+                </motion.div>
 
-                        {/* Content */}
-                        <div className="relative h-full p-8 md:p-12 flex flex-col justify-end z-10">
-                            {/* Icon */}
-                            <service.icon className="w-12 h-12 text-[#F7E7CE] mb-6" strokeWidth={1.5} />
-
-                            {/* Title */}
-                            <h4 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-slate-100 mb-4 leading-tight">
-                                {service.title}
-                            </h4>
-
-                            {/* Description */}
-                            <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-6 max-w-md">
-                                {service.description}
-                            </p>
-
-                            {/* Features */}
-                            <div className="grid grid-cols-2 gap-3">
-                                {service.features.map((feature, idx) => (
-                                    <motion.div
-                                        key={idx}
-                                        initial={{ opacity: 0, x: -10 }}
-                                        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
-                                        transition={{ duration: 0.4, delay: 0.4 + idx * 0.1 }}
-                                        className="flex items-center space-x-2"
-                                    >
-                                        <div className="w-1.5 h-1.5 rounded-full bg-[#F7E7CE]"></div>
-                                        <span className="text-sm text-slate-400">{feature}</span>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Hover glow effect */}
-                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#F7E7CE]/10 to-transparent"></div>
-                        </div>
-                    </motion.div>
-                ))}
+                {/* 3D Tilt Grid */}
+                <motion.div
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12"
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                    variants={containerVariants}
+                >
+                    {services.map((service, index) => (
+                        <ServiceCard key={index} service={service} variants={cardVariants} />
+                    ))}
+                </motion.div>
             </div>
         </section>
     );
 }
+
+// ========== 3D TILT SERVICE CARD COMPONENT ==========
+const ServiceCard = ({ service, variants }) => {
+    const cardRef = useRef(null);
+    const [rotateX, setRotateX] = useState(0);
+    const [rotateY, setRotateY] = useState(0);
+
+    const handleMouseMove = (e) => {
+        if (!cardRef.current) return;
+
+        const card = cardRef.current;
+        const rect = card.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        const xPct = mouseX / width - 0.5;
+        const yPct = mouseY / height - 0.5;
+
+        // Multiply by -15 for a nice satisfying tilt range
+        setRotateX(yPct * -15);
+        setRotateY(xPct * 15);
+    };
+
+    const handleMouseLeave = () => {
+        setRotateX(0);
+        setRotateY(0);
+    };
+
+    return (
+        <motion.div
+            variants={variants}
+            className="perspective-1000 h-[600px] w-full"
+            style={{ perspective: "1000px" }}
+        >
+            <motion.div
+                ref={cardRef}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                className="group relative h-full w-full bg-executive-muted/80 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden hover:border-executive-gold/50 transition-all duration-300 ease-out hover:shadow-[0_0_50px_-10px_rgba(197,160,117,0.3)]"
+                style={{
+                    transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+                    transformStyle: "preserve-3d",
+                }}
+            >
+                {/* 1. Top Area: Icon & Glow Container (1/3 Height) */}
+                <div className="h-1/3 w-full relative overflow-hidden flex items-center justify-center bg-gradient-to-b from-executive-gold/10 to-transparent">
+                    {/* Inner moving shine effect on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{ transform: "translateZ(20px)" }} />
+
+                    {/* The Icon */}
+                    <div
+                        className="relative z-10 p-6 rounded-full border border-white/5 bg-white/5 backdrop-blur-sm group-hover:scale-110 transition-transform duration-500 hover:border-executive-gold/30 hover:shadow-[0_0_30px_rgba(197,160,117,0.2)]"
+                        style={{ transform: "translateZ(40px)" }}
+                    >
+                        <service.icon className="w-10 h-10 md:w-12 md:h-12 text-executive-gold" strokeWidth={1.2} />
+                    </div>
+                </div>
+
+                {/* 2. Bottom Area: Content (2/3 Height) */}
+                <div className="h-2/3 p-8 md:p-10 flex flex-col relative z-20">
+                    {/* Floating Title */}
+                    <div style={{ transform: "translateZ(30px)" }}>
+                        <h3 className="font-serif text-3xl md:text-4xl font-bold text-white mb-4 group-hover:text-executive-gold transition-colors duration-300">
+                            {service.title}
+                        </h3>
+                        <div className="w-12 h-1 bg-executive-gold/30 mb-6 group-hover:w-24 transition-all duration-500" />
+                    </div>
+
+                    {/* Description */}
+                    <p
+                        className="text-executive-soft text-base md:text-lg leading-relaxed mb-8"
+                        style={{ transform: "translateZ(20px)" }}
+                    >
+                        {service.description}
+                    </p>
+
+                    {/* Features List */}
+                    <div
+                        className="mt-auto grid grid-cols-1 md:grid-cols-2 gap-4"
+                        style={{ transform: "translateZ(25px)" }}
+                    >
+                        {service.features.map((feature, i) => (
+                            <div key={i} className="flex items-center gap-3 group/item">
+                                <div className="w-1.5 h-1.5 rounded-full bg-executive-gold shadow-[0_0_8px_rgba(197,160,117,0.5)] group-hover/item:scale-125 transition-transform" />
+                                <span className="text-sm font-medium text-executive-soft group-hover/item:text-white transition-colors">
+                                    {feature}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* 3. Hover Inner Glow (Bottom Up) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-executive-gold/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+            </motion.div>
+        </motion.div>
+    );
+};

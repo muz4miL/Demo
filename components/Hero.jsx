@@ -5,16 +5,21 @@ import Image from "next/image";
 import Counter from "./Counter";
 
 // Word-by-word animation component
-function AnimatedWord({ children, index, scrollY }) {
+function AnimatedWord({ children, index, scrollY, color }) {
     const start = index * 30;
-    const end = start + 150;
+    const end = start + 300;
 
-    const opacity = useTransform(scrollY, [start, end, 400], [1, 0.3, 0]);
-    const y = useTransform(scrollY, [start, end, 400], [0, -20, -40]);
+    const opacity = useTransform(scrollY, [start, end, 500], [1, 0.3, 0]);
+    const y = useTransform(scrollY, [start, end, 500], [0, -20, -40]);
 
     return (
         <motion.span
-            style={{ opacity, y }}
+            style={{
+                opacity,
+                y,
+                '--word-color': color || 'inherit',
+                color: 'var(--word-color)'
+            }}
             className="inline-block mr-[0.25em]"
         >
             {children}
@@ -30,12 +35,15 @@ export default function Hero() {
     const line2Words = ["Transforming", "Leadership."];
 
     return (
-        <section className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_20%_20%,_rgba(247,231,206,0.08)_0%,_transparent_50%)] border-b border-white/[0.03]">
+        <section className="relative min-h-screen overflow-hidden bg-background border-b border-white/[0.03]">
+            {/* Radial Glow Background */}
+            <div className="absolute top-[20%] left-[20%] w-[800px] h-[800px] rounded-full blur-[160px] pointer-events-none -z-10" style={{ background: 'rgba(247, 231, 206, 0.15)' }}></div>
+
             {/* Animated Glow Orbs - Champagne Gold Aura */}
             <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#F7E7CE]/20 rounded-full blur-[100px] animate-pulse"></div>
-                <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-[#F7E7CE]/15 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }}></div>
-                <div className="absolute top-1/2 right-1/4 w-72 h-72 bg-[#F7E7CE]/10 rounded-full blur-[140px] animate-pulse" style={{ animationDelay: '2s' }}></div>
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[100px] animate-pulse" style={{ background: 'rgba(247, 231, 206, 0.15)' }}></div>
+                <div className="absolute bottom-1/3 right-1/3 w-80 h-80 rounded-full blur-[120px] animate-pulse" style={{ background: 'rgba(247, 231, 206, 0.12)', animationDelay: '1s' }}></div>
+                <div className="absolute top-1/2 right-1/4 w-72 h-72 rounded-full blur-[140px] animate-pulse" style={{ background: 'rgba(247, 231, 206, 0.10)', animationDelay: '2s' }}></div>
             </div>
 
             {/* ========== DESKTOP LAYOUT ========== */}
@@ -48,12 +56,16 @@ export default function Hero() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
                         >
-                            <h2 className="tracking-[0.2em] uppercase text-xs font-semibold mb-6" style={{ color: '#F7E7CE' }}>
+                            <h2 className="tracking-[0.2em] uppercase text-xs font-semibold mb-6 text-executive-gold">
                                 EXECUTIVE PROFILE
                             </h2>
 
                             {/* Word-by-Word Animated Headline */}
-                            <h1 className="font-serif font-bold leading-[0.9] tracking-tighter mb-6 text-slate-100" style={{ fontSize: 'clamp(3rem, 8vw, 5rem)' }}>
+                            <h1 className="font-serif font-bold leading-[0.9] tracking-tighter mb-6" style={{
+                                fontSize: 'clamp(3rem, 8vw, 5rem)',
+                                color: '#FAFAFA',
+                                filter: 'drop-shadow(0 0 10px rgba(197,160,117,0.2))'
+                            }}>
                                 <span className="block">
                                     {line1Words.map((word, i) => (
                                         <AnimatedWord key={word} index={i} scrollY={scrollY}>
@@ -61,9 +73,9 @@ export default function Hero() {
                                         </AnimatedWord>
                                     ))}
                                 </span>
-                                <span className="block text-slate-300">
+                                <span className="block">
                                     {line2Words.map((word, i) => (
-                                        <AnimatedWord key={word} index={i + line1Words.length} scrollY={scrollY}>
+                                        <AnimatedWord key={word} index={i + line1Words.length} scrollY={scrollY} color="#C5A075">
                                             {word}
                                         </AnimatedWord>
                                     ))}
@@ -71,8 +83,9 @@ export default function Hero() {
                             </h1>
 
                             <motion.p
-                                className="text-slate-400 text-lg md:text-xl leading-relaxed max-w-lg font-light"
+                                className="text-lg md:text-xl leading-relaxed max-w-lg font-light"
                                 style={{
+                                    color: '#D1D5DB',
                                     opacity: useTransform(scrollY, [0, 200], [1, 0]),
                                     y: useTransform(scrollY, [0, 200], [0, -30])
                                 }}
@@ -96,14 +109,14 @@ export default function Hero() {
                                 <h3 className="text-3xl font-serif text-white">
                                     <Counter from={0} to={16} suffix="+" duration={2} />
                                 </h3>
-                                <span className="text-sm text-slate-500 uppercase tracking-wider">Years Exp.</span>
+                                <span className="text-sm text-executive-soft uppercase tracking-wider">Years Exp.</span>
                             </div>
                             <div className="w-px h-12 bg-white/10"></div>
                             <div className="flex flex-col">
                                 <h3 className="text-3xl font-serif text-white">
                                     <Counter from={0} to={3} suffix="+" duration={1.5} />
                                 </h3>
-                                <span className="text-sm text-slate-500 uppercase tracking-wider">Industries</span>
+                                <span className="text-sm text-executive-soft uppercase tracking-wider">Industries</span>
                             </div>
                         </motion.div>
                     </div>
@@ -118,9 +131,9 @@ export default function Hero() {
                         className="relative w-full h-full"
                     >
                         {/* Glow behind image */}
-                        <div className="absolute -z-10 inset-0 bg-[#F7E7CE]/15 blur-[120px]"></div>
+                        <div className="absolute -z-10 inset-0 bg-executive-gold/15 blur-[120px]"></div>
 
-                        <div className="relative w-full h-full bg-neutral-800 rounded-[3rem] overflow-hidden">
+                        <div className="relative w-full h-full bg-executive-muted rounded-[3rem] overflow-hidden">
                             <Image
                                 src="/shakeel-profile.png"
                                 alt="Shakeel Bukhari - Executive Coach & Real Estate Specialist"
@@ -130,7 +143,7 @@ export default function Hero() {
                                 quality={95}
                             />
                             {/* Subtle overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#121212]/30 to-transparent"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent"></div>
                         </div>
                     </motion.div>
                 </div>
@@ -149,7 +162,7 @@ export default function Hero() {
                         quality={95}
                     />
                     {/* Bottom gradient for seamless blend */}
-                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#121212] to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
                 </div>
 
                 {/* Text Container - Centered, Subtle Overlap */}
@@ -159,14 +172,14 @@ export default function Hero() {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="w-full px-10 py-16 mt-[-20px] text-center"
                 >
-                    <h2 className="tracking-[0.2em] uppercase text-[10px] font-semibold mb-4" style={{ color: '#F7E7CE' }}>
+                    <h2 className="tracking-[0.2em] uppercase text-[10px] font-semibold mb-4 text-executive-gold">
                         EXECUTIVE PROFILE
                     </h2>
-                    <h1 className="font-serif text-4xl font-bold leading-[0.95] tracking-tighter text-slate-100 text-balance mb-4">
+                    <h1 className="font-serif text-4xl font-bold leading-[0.95] tracking-tighter text-balance mb-4" style={{ color: '#FAFAFA' }}>
                         Architecting Legacies. <br />
-                        <span className="text-slate-300">Transforming Leadership.</span>
+                        <span style={{ color: '#C5A075' }}>Transforming Leadership.</span>
                     </h1>
-                    <p className="text-slate-400 text-base leading-relaxed font-light mb-8 max-w-sm mx-auto">
+                    <p className="text-base leading-relaxed font-light mb-8 max-w-sm mx-auto" style={{ color: '#D1D5DB' }}>
                         16 years of cross-industry mastery in Real Estate development and High-Performance Life Coaching.
                     </p>
 
@@ -176,14 +189,14 @@ export default function Hero() {
                             <h3 className="text-2xl font-serif text-white">
                                 <Counter from={0} to={16} suffix="+" duration={2} />
                             </h3>
-                            <span className="text-xs text-slate-500 uppercase tracking-wider">Years</span>
+                            <span className="text-xs uppercase tracking-wider" style={{ color: '#9CA3AF' }}>Years</span>
                         </div>
                         <div className="w-px h-10 bg-white/20"></div>
                         <div className="flex flex-col items-center">
                             <h3 className="text-2xl font-serif text-white">
                                 <Counter from={0} to={3} suffix="+" duration={1.5} />
                             </h3>
-                            <span className="text-xs text-slate-500 uppercase tracking-wider">Industries</span>
+                            <span className="text-xs uppercase tracking-wider" style={{ color: '#9CA3AF' }}>Industries</span>
                         </div>
                     </div>
                 </motion.div>

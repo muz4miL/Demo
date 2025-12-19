@@ -19,7 +19,7 @@ export default function Navbar() {
             <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="font-serif text-xl md:text-2xl text-white tracking-tight">
-                    <span style={{ color: '#F7E7CE' }}>S</span>hakeel <span style={{ color: '#F7E7CE' }}>B</span>ukhari
+                    <span className="text-executive-gold">S</span>hakeel <span className="text-executive-gold">B</span>ukhari
                 </Link>
 
                 {/* Desktop Navigation */}
@@ -28,7 +28,7 @@ export default function Navbar() {
                         <Link
                             key={link.href}
                             href={link.href}
-                            className="text-sm text-slate-300 hover:text-white transition-colors duration-300"
+                            className="text-sm text-executive-soft hover:text-white transition-colors duration-300"
                         >
                             {link.label}
                         </Link>
@@ -41,7 +41,7 @@ export default function Navbar() {
                     >
                         <Link
                             href="#contact"
-                            className="block px-6 py-2.5 bg-[#F7E7CE] text-black text-xs font-semibold uppercase tracking-[0.25em] rounded-full transition-all backdrop-blur-md shadow-[0_0_20px_rgba(247,231,206,0.2)] hover:shadow-[0_0_30px_rgba(247,231,206,0.5)]"
+                            className="block px-6 py-2.5 bg-executive-gold text-black text-xs font-semibold uppercase tracking-[0.25em] rounded-full transition-all backdrop-blur-md shadow-[0_0_20px_rgba(197,160,117,0.2)] hover:shadow-[0_0_30px_rgba(197,160,117,0.5)]"
                         >
                             Connect
                         </Link>
@@ -73,7 +73,7 @@ export default function Navbar() {
                                     key={link.href}
                                     href={link.href}
                                     onClick={() => setIsOpen(false)}
-                                    className="block text-lg text-slate-300 hover:text-white transition-colors"
+                                    className="block text-lg text-executive-soft hover:text-white transition-colors"
                                 >
                                     {link.label}
                                 </Link>
@@ -81,7 +81,7 @@ export default function Navbar() {
                             <Link
                                 href="#contact"
                                 onClick={() => setIsOpen(false)}
-                                className="block text-center px-6 py-3 bg-[#F7E7CE] text-[#121212] text-xs font-semibold uppercase tracking-[0.25em] rounded-full"
+                                className="block text-center px-6 py-3 bg-executive-gold text-[#121212] text-xs font-semibold uppercase tracking-[0.25em] rounded-full"
                             >
                                 Connect
                             </Link>

@@ -26,7 +26,7 @@ export default function Logos() {
                     initial={{ opacity: 0 }}
                     animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="text-center text-slate-500 text-xs uppercase tracking-[0.2em] mb-10"
+                    className="text-center text-executive-soft text-xs uppercase tracking-[0.2em] mb-10"
                 >
                     Trusted By Industry Leaders
                 </motion.p>
@@ -47,7 +47,7 @@ export default function Logos() {
                                 className="group relative flex items-center justify-center cursor-pointer flex-shrink-0"
                                 style={{
                                     minWidth: '140px',
-                                    filter: 'drop-shadow(0 0 10px rgba(247,231,206,0.1))'
+                                    filter: 'drop-shadow(0 0 10px rgba(197,160,117,0.1))'
                                 }}
                             >
                                 <Image
@@ -72,7 +72,7 @@ export default function Logos() {
                                     className="inline-flex items-center justify-center flex-shrink-0"
                                     style={{
                                         minWidth: '100px',
-                                        filter: 'drop-shadow(0 0 10px rgba(247,231,206,0.1))'
+                                        filter: 'drop-shadow(0 0 10px rgba(197,160,117,0.1))'
                                     }}
                                 >
                                     <Image

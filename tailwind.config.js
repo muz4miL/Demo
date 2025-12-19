@@ -6,35 +6,32 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      colors: {
-        background: "#121212", // Deep Charcoal
-        foreground: "#f8fafc", // Slate-50
-        primary: {
-          DEFAULT: "#F7E7CE", // Champagne Gold
-          foreground: "#121212",
-        },
-        secondary: {
-          DEFAULT: "#f1f5f9", // Slate-100
-          foreground: "#121212",
-        },
-        muted: {
-          DEFAULT: "#1e293b", // Slate-800
-          foreground: "#94a3b8", // Slate-400
-        },
-        accent: {
-          DEFAULT: "#F7E7CE", // Champagne Gold
-          foreground: "#121212",
-        },
+    // We move colors OUTSIDE of extend to overwrite Tailwind's defaults
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      white: '#FAFAFA',
+      black: '#000000',
+      // The Master Palette
+      background: "#0A0A0B", // Deep Night Charcoal
+      foreground: "#C5A075", // Antique Gold
+      primary: "#C5A075",
+      accent: "#C5A075",
+      // Specific Executive Tones
+      executive: {
+        gold: "#C5A075",
+        charcoal: "#0A0A0B",
+        muted: "#1A1A1C", // Slightly lighter for cards
+        soft: "#94a3b8", // For less important text
       },
+    },
+    extend: {
       fontFamily: {
         sans: ["var(--font-inter)"],
         serif: ["var(--font-playfair)"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
   },
