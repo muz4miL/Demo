@@ -2,28 +2,15 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import dynamic from "next/dynamic";
-
-const Antigravity = dynamic(() => import("./Antigravity"), { ssr: false });
 
 export default function Hero() {
     return (
         <section className="relative min-h-screen flex flex-col md:flex-row items-stretch overflow-hidden pt-20 md:pt-0 bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-slate-900 via-black to-black border-b border-white/5">
             {/* Animated Glow Orbs */}
-            <div className="absolute inset-0 -z-20 pointer-events-none overflow-hidden">
+            <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#FFD700]/20 rounded-full blur-[100px] animate-pulse"></div>
                 <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-[#FFD700]/15 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }}></div>
-            </div>
-
-            {/* 3D Particles Layer */}
-            <div className="absolute inset-0 -z-10 pointer-events-none opacity-30">
-                <Antigravity
-                    count={200}
-                    particleSize={1.2}
-                    color="#FFD700"
-                    autoAnimate={true}
-                    waveSpeed={0.2}
-                />
+                <div className="absolute top-1/2 right-1/4 w-72 h-72 bg-[#FFD700]/10 rounded-full blur-[140px] animate-pulse" style={{ animationDelay: '2s' }}></div>
             </div>
 
             {/* Desktop Layout */}
